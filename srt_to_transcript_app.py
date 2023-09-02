@@ -1,5 +1,5 @@
 """
-Transcription Trimmer Program engineered by Alexander Daguob, CoE
+SRT-TS Transcript Software
 AI's transcription is not perfect and hence must be proofread by a human transcriber
 who needs AI's accuracy in fetching names, places and orgs.
 AI Whisper Large-CPP prefers AUDIO in m4a-format <<-----------
@@ -7,7 +7,8 @@ AI Whisper Large-CPP prefers AUDIO in m4a-format <<-----------
 
 
 def main():
-	filename = "ts_projects\\au_TPPart2_125562_BrianChampionandRickyDimerPart3of3.srt"
+	filename = "./input/auBrandiBurrows.srt"
+	# TODO: Add a GUI for SRT file input, tags for relabeling entries, treeview etc...
 	print("Initiating SRT Trimmer and Re-labeler Program...")
 	content_in_single_line = clean_SRT_and_combine_all_texts_in_one(filename)
 	filename = relabel_speakers_in_clean_SRT_txt(content_in_single_line, filename)
@@ -177,9 +178,8 @@ def timestamp(string_value='t143'):
 	return timestamp_string
 	
 	
-	
-
-run_program = 'y'
-while run_program.lower() != 'q':
-	main()
-	run_program = input("\nPress 'q' to EXIT PROGRAM or other keys to continue: ")
+if __name__ == "__main__":	
+	run_program = 'y'
+	while run_program.lower() != 'q':
+		main()
+		run_program = input("\nPress 'q' to EXIT PROGRAM or other keys to continue: ")

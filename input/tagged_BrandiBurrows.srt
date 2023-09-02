@@ -4,15 +4,15 @@
 
 2
 00:00:22,001 --> 00:00:39,000
-[door opening]
+br1 [door opening]
 
 3
 00:00:39,001 --> 00:00:40,001
-Good night, brother.
+sd1 Good night, Brandi.
 
 4
 00:00:40,084 --> 00:00:52,083
-[door closing].
+br1[door closing]
 
 5
 00:00:52,900 --> 00:01:10,000
@@ -20,15 +20,15 @@ Good night, brother.
 
 6
 00:01:10,001 --> 00:01:21,000
-[door closing]
+
 
 7
 00:01:21,001 --> 00:01:24,000
-[door opening]
+br1[door opening]
 
 8
 00:01:24,001 --> 00:01:26,030
-They had to switch up
+dd1 They had to switch up
 your food because they
 
 9
@@ -42,11 +42,11 @@ from McDonald's. That's all right?
 
 11
 00:01:31,001 --> 00:01:32,000
-All right. What are you getting?
+sf1 All right. What are you getting?
 
 12
 00:01:32,001 --> 00:01:35,000
-Big Macs, Quarter Pounder,
+dd1 Big Macs, Quarter Pounder,
 they're getting a bunch of stuff.
 
 13
@@ -55,27 +55,27 @@ And fries and stuff.
 
 14
 00:01:36,002 --> 00:01:37,001
-I'm getting fish sandwich.
+ff1 I'm getting fish sandwich.
 
 15
 00:01:37,002 --> 00:01:38,000
-Fish sandwich?
+dd1 Fish sandwich?
 
 16
 00:01:38,001 --> 00:01:39,000
-Yeah, fish fillet.
+ff1 Yeah, fish fillet.
 
 17
 00:01:39,001 --> 00:01:40,000
-Okay.
+dd1 Okay.
 
 18
 00:01:40,001 --> 00:01:41,000
-Yeah.
+ff1 Yeah.
 
 19
 00:01:41,001 --> 00:01:42,000
-Let me tell you real quick.
+dd1 Let me tell you real quick.
 
 20
 00:01:42,001 --> 00:01:44,000
@@ -84,7 +84,7 @@ show you some photos.
 
 21
 00:01:44,001 --> 00:01:45,959
-And see if you can remember
+ff1 Hmm. dd1 And see if you can remember
 the other person that
 
 22

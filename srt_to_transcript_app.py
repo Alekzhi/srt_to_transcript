@@ -7,7 +7,7 @@ AI Whisper Large-CPP prefers AUDIO in m4a-format <<-----------
 
 
 def main():
-	filename = "./input/auBrandiBurrows.srt"
+	filename = "./input/tagged_BrandiBurrows.srt"
 	# TODO: Add a GUI for SRT file input, tags for relabeling entries, treeview etc...
 	print("Initiating SRT Trimmer and Re-labeler Program...")
 	content_in_single_line = clean_SRT_and_combine_all_texts_in_one(filename)
@@ -18,11 +18,14 @@ def main():
 def relabel_speakers_in_clean_SRT_txt(content_in_single_line, filename):
 	# Dictionary of tags to be re-labeled:
 	tags_dict = {  # \n for Single-spaced, \n\n for Double-spaced
-		'dd1': '\n\nMan:',
-		'ss2': '\n\nMan 2:',
-		'dd2': '\n\nMan 3:',
-		'dd3': '\n\nMan 4:',
-		'ff1': '\n\nWoman 1:',
+		'sd1': '\n\Detective Charlie:',
+		'dd1': '\n\Charlie:',
+		'sd2': '\n\Detective Tate:',
+		'dd2': '\n\Tate:',
+		'sd3': '\n\Man 3:',
+		'dd3': '\n\nMan 3',
+		'sf1': '\n\Brandi Burrows:',
+		'ff1': '\n\Brandi:',
 		'ff2': '\n\nWoman 2:',
 		'ff3': '\n\nWoman 3:',
 		'ff4': '\n\nWoman 4:',
@@ -140,13 +143,16 @@ def relabel_speakers_in_clean_SRT_txt(content_in_single_line, filename):
 				f.write(each_string)
 	return filename
 
+
 def clean_SRT_and_combine_all_texts_in_one(filename):
-	with open(filename, 'r') as f:
-		content = f.readlines()
+    with open(filename, 'r') as f:
+        content = f.readlines()
 	# Remove lines without alpha bytes and
 	# combine all lines in one that is not like: 00:00:05,650 --> 00:00:11,000
+	
 	content_in_single_line = ['']
 	content[0] = content[1] = ''
+ 
 	for each_line in content:
 		new_line = ''
 		line_has_alpha_or_punctuation = False

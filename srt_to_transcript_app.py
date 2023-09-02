@@ -18,14 +18,14 @@ def main():
 def relabel_speakers_in_clean_SRT_txt(content_in_single_line, filename):
 	# Dictionary of tags to be re-labeled:
 	tags_dict = {  # \n for Single-spaced, \n\n for Double-spaced
-		'sd1': '\n\Detective Charlie:',
-		'dd1': '\n\Charlie:',
-		'sd2': '\n\Detective Tate:',
-		'dd2': '\n\Tate:',
-		'sd3': '\n\Man 3:',
+		'sd1': '\n\nDetective Charlie:',
+		'dd1': '\n\nCharlie:',
+		'sd2': '\n\nDetective Tate:',
+		'dd2': '\n\nTate:',
+		'sd3': '\n\nMan 3:',
 		'dd3': '\n\nMan 3',
-		'sf1': '\n\Brandi Burrows:',
-		'ff1': '\n\Brandi:',
+		'sf1': '\n\nBrandi Burrows:',
+		'ff1': '\n\nBrandi:',
 		'ff2': '\n\nWoman 2:',
 		'ff3': '\n\nWoman 3:',
 		'ff4': '\n\nWoman 4:',
@@ -145,14 +145,12 @@ def relabel_speakers_in_clean_SRT_txt(content_in_single_line, filename):
 
 
 def clean_SRT_and_combine_all_texts_in_one(filename):
-    with open(filename, 'r') as f:
-        content = f.readlines()
+	with open(filename, 'r') as f:
+		content = f.readlines()
 	# Remove lines without alpha bytes and
 	# combine all lines in one that is not like: 00:00:05,650 --> 00:00:11,000
-	
 	content_in_single_line = ['']
 	content[0] = content[1] = ''
- 
 	for each_line in content:
 		new_line = ''
 		line_has_alpha_or_punctuation = False

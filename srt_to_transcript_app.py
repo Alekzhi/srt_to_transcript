@@ -2,30 +2,29 @@
 SRT-TS Transcript Software
 AI's transcription is not perfect and hence must be proofread by a human transcriber
 who needs AI's accuracy in fetching names, places and orgs.
-AI Whisper Large-CPP prefers AUDIO in m4a-format <<-----------
+AI Whisper Large-CPP prefers AUDIO in m4a-format
+
+TODO: Add a GUI for SRT file input, tags for relabeling entries, treeview etc...
 """
 
 
 def main():
-	filename = "./input/tagged_BrandiBurrows.srt"
-	# TODO: Add a GUI for SRT file input, tags for relabeling entries, treeview etc...
-	print("Initiating SRT Trimmer and Re-labeler Program...")
-	content_in_single_line = clean_SRT_and_combine_all_texts_in_one(filename)
-	filename = relabel_speakers_in_clean_SRT_txt(content_in_single_line, filename)
-	print("SRT Trimmer and Re-labeler Program finished. \n"
-	      "File created: " + filename)
+	filename = "tagged_TPPart3_126268_137.srt"
+	inputfilename = "./input/" + filename
+	outputfilename = "./output/" + filename
+	content_in_single_line = clean_SRT_and_combine_all_texts_in_one(inputfilename)
+	outputfilename = relabel_speakers_in_clean_SRT_txt(content_in_single_line, outputfilename)
+	print("File created: " + outputfilename)
+	
 
-def relabel_speakers_in_clean_SRT_txt(content_in_single_line, filename):
+def relabel_speakers_in_clean_SRT_txt(content_in_single_line, outputfilename):
 	# Dictionary of tags to be re-labeled:
 	tags_dict = {  # \n for Single-spaced, \n\n for Double-spaced
-		'sd1': '\n\nDetective Charlie:',
-		'dd1': '\n\nCharlie:',
-		'sd2': '\n\nDetective Tate:',
-		'dd2': '\n\nTate:',
-		'sd3': '\n\nMan 3:',
-		'dd3': '\n\nMan 3',
-		'sf1': '\n\nBrandi Burrows:',
-		'ff1': '\n\nBrandi:',
+		'dd1': '\n\nMan 1:',
+		'dd2': '\n\nMan 2:',
+		'dd3': '\n\nMan 3:',
+		'dd4': '\n\nMan 4:',
+		'ff1': '\n\nWoman 1:',
 		'ff2': '\n\nWoman 2:',
 		'ff3': '\n\nWoman 3:',
 		'ff4': '\n\nWoman 4:',
@@ -136,31 +135,30 @@ def relabel_speakers_in_clean_SRT_txt(content_in_single_line, filename):
 	# print(s_new_content_relabeled_speakers)
 	# l_new_content_relabeled_speakers = list(s_new_content_relabeled_speakers)
 	# print(l_new_content_relabeled_speakers)
-	filename = filename.replace(filename[-4:], '_trimmed.txt')
-	with open(filename, 'w') as f:
+	outputfilename = outputfilename.replace(outputfilename[-4:], '_trimmed.txt')
+	with open(outputfilename, 'w') as f:
 		for each_list in new_content_relabeled_speakers:
 			for each_string in each_list:
 				f.write(each_string)
-	return filename
+	return outputfilename
 
 
-def clean_SRT_and_combine_all_texts_in_one(filename):
-	with open(filename, 'r') as f:
-		content = f.readlines()
-	# Remove lines without alpha bytes and
-	# combine all lines in one that is not like: 00:00:05,650 --> 00:00:11,000
-	content_in_single_line = ['']
-	content[0] = content[1] = ''
-	for each_line in content:
-		new_line = ''
-		line_has_alpha_or_punctuation = False
-		for byte in each_line:
-			new_line = new_line + byte
-			if byte.isalpha() or (byte in ',.?' and ':' not in each_line):
-				line_has_alpha_or_punctuation = True
-		if line_has_alpha_or_punctuation:
-			content_in_single_line.append(new_line)
-	return content_in_single_line
+def clean_SRT_and_combine_all_texts_in_one(inputfilename):
+    print("Cleaning the SRT file and combining all texts in one line...")
+    with open(inputfilename, 'r') as f:
+        content = f.readlines()
+    content_in_single_line = ['']
+    content[0] = content[1] = ''
+    for each_line in content:
+        new_line = ''
+        line_has_alpha_or_punctuation = False
+        for byte in each_line: # Remove lines without alpha bytes and
+            new_line = new_line + byte
+            if byte.isalpha() or (byte in ',.?' and ':' not in each_line):
+                line_has_alpha_or_punctuation = True  # combine all lines in one that is not like: 00:00:05,650 --> 00:00:11,000
+        if line_has_alpha_or_punctuation:
+            content_in_single_line.append(new_line)
+            return content_in_single_line
 
 
 def timestamp(string_value='t143'):

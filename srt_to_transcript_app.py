@@ -131,10 +131,6 @@ def relabel_speakers_in_clean_SRT_txt(content_in_single_line, outputfilename):
 			if '  ' in new_content_relabeled_speakers[index_of_each_list]:
 				new_content_relabeled_speakers[index_of_each_list] \
 					= new_content_relabeled_speakers[index_of_each_list].replace('  ', ' ')
-	# s_new_content_relabeled_speakers = str(new_content_relabeled_speakers)
-	# print(s_new_content_relabeled_speakers)
-	# l_new_content_relabeled_speakers = list(s_new_content_relabeled_speakers)
-	# print(l_new_content_relabeled_speakers)
 	outputfilename = outputfilename.replace(outputfilename[-4:], '_trimmed.txt')
 	with open(outputfilename, 'w') as f:
 		for each_list in new_content_relabeled_speakers:
@@ -152,13 +148,13 @@ def clean_SRT_and_combine_all_texts_in_one(inputfilename):
     for each_line in content:
         new_line = ''
         line_has_alpha_or_punctuation = False
-        for byte in each_line: # Remove lines without alpha bytes and
+        for byte in each_line: # Remove lines without alpha bytes and...
             new_line = new_line + byte
             if byte.isalpha() or (byte in ',.?' and ':' not in each_line):
-                line_has_alpha_or_punctuation = True  # combine all lines in one that is not like: 00:00:05,650 --> 00:00:11,000
-        if line_has_alpha_or_punctuation:
+                line_has_alpha_or_punctuation = True  # ... combine all lines in one that is...
+        if line_has_alpha_or_punctuation:				# ... not like: 00:00:05,650 --> 00:00:11,000
             content_in_single_line.append(new_line)
-            return content_in_single_line
+    return content_in_single_line
 
 
 def timestamp(string_value='t143'):
